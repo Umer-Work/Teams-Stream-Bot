@@ -101,23 +101,40 @@ namespace EchoBot.Bot
             _mediaPlatformLogger = mediaLogger;
         }
 
+        private void ValidateSettings()
+        {
+            var requiredFields = new Dictionary<string, string>
+            {
+                { nameof(_settings.AadAppId), _settings.AadAppId },
+                { nameof(_settings.AadAppSecret), _settings.AadAppSecret },
+                { nameof(_settings.CertificateThumbprint), _settings.CertificateThumbprint },
+                { nameof(_settings.MediaDnsName), _settings.MediaDnsName },
+                { nameof(_settings.ServiceDnsName), _settings.ServiceDnsName }
+            };
+
+            foreach (var field in requiredFields)
+            {
+                if (string.IsNullOrWhiteSpace(field.Value))
+                {
+                    _logger.LogError($"{field.Key} is not configured.");
+                    throw new InvalidOperationException($"Missing required setting: {field.Key}");
+                }
+            }
+        }
+
         /// <summary>
         /// Initialize the instance.
         /// </summary>
         public void Initialize()
         {
             _logger.LogInformation("Initializing Bot Service");
-            var name = this.GetType().Assembly.GetName().Name;
-            var builder = new CommunicationsClientBuilder(
-                name,
-                _settings.AadAppId,
-                _graphLogger);
 
-            var authProvider = new AuthenticationProvider(
-                name,
-                _settings.AadAppId,
-                _settings.AadAppSecret,
-                _graphLogger);
+            ValidateSettings();
+
+            var name = this.GetType().Assembly.GetName().Name;
+            var builder = new CommunicationsClientBuilder(name, _settings.AadAppId, _graphLogger);
+
+            var authProvider = new AuthenticationProvider(name, _settings.AadAppId, _settings.AadAppSecret, _graphLogger);
 
             var mediaPlatformSettings = new MediaPlatformSettings()
             {
@@ -134,7 +151,7 @@ namespace EchoBot.Bot
             };
 
             var notificationUrl = new Uri($"https://{_settings.ServiceDnsName}:{_settings.BotInstanceExternalPort}/{HttpRouteConstants.CallSignalingRoutePrefix}/{HttpRouteConstants.OnNotificationRequestRoute}");
-            _logger.LogInformation($"NotificationUrl: ${notificationUrl}");
+            _logger.LogInformation($"NotificationUrl: {notificationUrl}");
 
             builder.SetAuthenticationProvider(authProvider);
             builder.SetNotificationUrl(notificationUrl);

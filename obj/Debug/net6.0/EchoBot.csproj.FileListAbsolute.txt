@@ -233,3 +233,4 @@ C:\Users\Admin\Desktop\EchoBot\obj\Debug\net6.0\refint\EchoBot.dll
 C:\Users\Admin\Desktop\EchoBot\obj\Debug\net6.0\EchoBot.pdb
 C:\Users\Admin\Desktop\EchoBot\obj\Debug\net6.0\EchoBot.genruntimeconfig.cache
 C:\Users\Admin\Desktop\EchoBot\obj\Debug\net6.0\ref\EchoBot.dll
+C:\Users\Admin\Desktop\EchoBot\obj\Debug\net6.0\EchoBot.sourcelink.json
