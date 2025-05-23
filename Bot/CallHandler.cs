@@ -37,7 +37,7 @@ namespace EchoBot.Bot
             AppSettings settings,
             ILogger logger
         )
-            : base(TimeSpan.FromMinutes(10), statefulCall?.GraphLogger)
+            : base(TimeSpan.FromMinutes(10), statefulCall?.GraphLogger ?? throw new ArgumentNullException(nameof(statefulCall)))
         {
             this.Call = statefulCall;
             this.Call.OnUpdated += this.CallOnUpdated;
@@ -125,21 +125,21 @@ namespace EchoBot.Bot
         {
             foreach (var participant in eventArgs)
             {
-                var json = string.Empty;
+                if (participant == null)
+                    continue;
 
-                // todo remove the cast with the new graph implementation,
-                // for now we want the bot to only subscribe to "real" participants
-                var participantDetails = participant.Resource.Info.Identity.User;
+                var json = string.Empty;
+                var participantDetails = participant.Resource?.Info?.Identity?.User;
 
                 if (participantDetails != null)
                 {
-                    json = updateParticipant(this.BotMediaStream.participants, participant, added, participantDetails.DisplayName);
+                    json = updateParticipant(this.BotMediaStream.participants, participant!, added, participantDetails?.DisplayName ?? "");
                 }
-                else if (participant.Resource.Info.Identity.AdditionalData?.Count > 0)
+                else if (participant.Resource?.Info?.Identity?.AdditionalData?.Count > 0)
                 {
                     if (CheckParticipantIsUsable(participant))
                     {
-                        json = updateParticipant(this.BotMediaStream.participants, participant, added);
+                        json = updateParticipant(this.BotMediaStream.participants, participant!, added);
                     }
                 }
             }
@@ -163,9 +163,16 @@ namespace EchoBot.Bot
         /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         private bool CheckParticipantIsUsable(IParticipant p)
         {
-            foreach (var i in p.Resource.Info.Identity.AdditionalData)
+            var additionalData = p?.Resource?.Info?.Identity?.AdditionalData;
+
+            if (additionalData == null)
+                return false;
+
+            foreach (var i in additionalData)
+            {
                 if (i.Key != "applicationInstance" && i.Value is Identity)
                     return true;
+            }
 
             return false;
         }

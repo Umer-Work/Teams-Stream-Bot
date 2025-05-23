@@ -227,10 +227,10 @@ C:\Users\Admin\Desktop\EchoBot\obj\Debug\net6.0\EchoBot.GeneratedMSBuildEditorCo
 C:\Users\Admin\Desktop\EchoBot\obj\Debug\net6.0\EchoBot.AssemblyInfoInputs.cache
 C:\Users\Admin\Desktop\EchoBot\obj\Debug\net6.0\EchoBot.AssemblyInfo.cs
 C:\Users\Admin\Desktop\EchoBot\obj\Debug\net6.0\EchoBot.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\EchoBot\obj\Debug\net6.0\EchoBot.sourcelink.json
 C:\Users\Admin\Desktop\EchoBot\obj\Debug\net6.0\EchoBot.csproj.Up2Date
 C:\Users\Admin\Desktop\EchoBot\obj\Debug\net6.0\EchoBot.dll
 C:\Users\Admin\Desktop\EchoBot\obj\Debug\net6.0\refint\EchoBot.dll
 C:\Users\Admin\Desktop\EchoBot\obj\Debug\net6.0\EchoBot.pdb
 C:\Users\Admin\Desktop\EchoBot\obj\Debug\net6.0\EchoBot.genruntimeconfig.cache
 C:\Users\Admin\Desktop\EchoBot\obj\Debug\net6.0\ref\EchoBot.dll
-C:\Users\Admin\Desktop\EchoBot\obj\Debug\net6.0\EchoBot.sourcelink.json

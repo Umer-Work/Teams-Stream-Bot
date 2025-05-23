@@ -105,11 +105,11 @@ namespace EchoBot.Bot
         {
             var requiredFields = new Dictionary<string, string>
             {
-                { nameof(_settings.AadAppId), _settings.AadAppId },
-                { nameof(_settings.AadAppSecret), _settings.AadAppSecret },
-                { nameof(_settings.CertificateThumbprint), _settings.CertificateThumbprint },
-                { nameof(_settings.MediaDnsName), _settings.MediaDnsName },
-                { nameof(_settings.ServiceDnsName), _settings.ServiceDnsName }
+                { nameof(_settings.AadAppId), _settings.AadAppId! },
+                { nameof(_settings.AadAppSecret), _settings.AadAppSecret! },
+                { nameof(_settings.CertificateThumbprint), _settings.CertificateThumbprint! },
+                { nameof(_settings.MediaDnsName), _settings.MediaDnsName! },
+                { nameof(_settings.ServiceDnsName), _settings.ServiceDnsName! }
             };
 
             foreach (var field in requiredFields)
@@ -134,7 +134,7 @@ namespace EchoBot.Bot
             var name = this.GetType().Assembly.GetName().Name;
             var builder = new CommunicationsClientBuilder(name, _settings.AadAppId, _graphLogger);
 
-            var authProvider = new AuthenticationProvider(name, _settings.AadAppId, _settings.AadAppSecret, _graphLogger);
+            var authProvider = new AuthenticationProvider(name!, _settings.AadAppId!, _settings.AadAppSecret!, _graphLogger);
 
             var mediaPlatformSettings = new MediaPlatformSettings()
             {
@@ -206,12 +206,11 @@ namespace EchoBot.Bot
         /// <returns>The <see cref="ICall" /> that was requested to join.</returns>
         public async Task<ICall> JoinCallAsync(JoinCallBody joinCallBody)
         {
-            // A tracking id for logging purposes. Helps identify this call in logs.
             var scenarioId = Guid.NewGuid();
-
             var (chatInfo, meetingInfo) = JoinInfo.ParseJoinURL(joinCallBody.JoinUrl);
 
-            var tenantId = (meetingInfo as OrganizerMeetingInfo).Organizer.GetPrimaryIdentity().GetTenantId();
+            var tenantId = (meetingInfo as OrganizerMeetingInfo)?.Organizer?.GetPrimaryIdentity()?.GetTenantId() 
+                        ?? throw new InvalidOperationException("TenantId could not be extracted from meeting info.");
             var mediaSession = this.CreateLocalMediaSession();
 
             var joinParams = new JoinMeetingParameters(chatInfo, meetingInfo, mediaSession)
@@ -221,10 +220,6 @@ namespace EchoBot.Bot
 
             if (!string.IsNullOrWhiteSpace(joinCallBody.DisplayName))
             {
-                // Teams client does not allow changing of ones own display name.
-                // If display name is specified, we join as anonymous (guest) user
-                // with the specified display name.  This will put bot into lobby
-                // unless lobby bypass is disabled.
                 joinParams.GuestIdentity = new Identity
                 {
                     Id = Guid.NewGuid().ToString(),
@@ -232,7 +227,9 @@ namespace EchoBot.Bot
                 };
             }
 
-            if (!this.CallHandlers.TryGetValue(joinParams.ChatInfo.ThreadId, out CallHandler? call))
+            var threadId = joinParams.ChatInfo.ThreadId ?? throw new InvalidOperationException("ThreadId cannot be null.");
+
+            if (!this.CallHandlers.TryGetValue(threadId, out CallHandler? call))
             {
                 var statefulCall = await this.Client.Calls().AddAsync(joinParams, scenarioId).ConfigureAwait(false);
                 statefulCall.GraphLogger.Info($"Call creation complete: {statefulCall.Id}");
@@ -284,34 +281,23 @@ namespace EchoBot.Bot
         {
             args.AddedResources.ForEach(call =>
             {
-                // Get the policy recording parameters.
+                if (call?.Resource?.IncomingContext == null)
+                    return;
 
-                // The context associated with the incoming call.
-                IncomingContext incomingContext =
-                    call.Resource.IncomingContext;
+                var incomingContext = call.Resource.IncomingContext;
 
-                // The RP participant.
-                string observedParticipantId =
-                    incomingContext.ObservedParticipantId;
+                string? observedParticipantId = incomingContext.ObservedParticipantId;
+                IdentitySet? onBehalfOfIdentity = incomingContext.OnBehalfOf;
+                IdentitySet? transferorIdentity = incomingContext.Transferor;
 
-                // If the observed participant is a delegate.
-                IdentitySet onBehalfOfIdentity =
-                    incomingContext.OnBehalfOf;
-
-                // If a transfer occured, the transferor.
-                IdentitySet transferorIdentity =
-                    incomingContext.Transferor;
-
-                string countryCode = null;
+                string? countryCode = null;
                 EndpointType? endpointType = null;
 
-                // Note: this should always be true for CR calls.
-                if (incomingContext.ObservedParticipantId == incomingContext.SourceParticipantId)
+                if (!string.IsNullOrEmpty(observedParticipantId) &&
+                    observedParticipantId == incomingContext.SourceParticipantId &&
+                    call.Resource?.Source != null)
                 {
-                    // The dynamic location of the RP.
                     countryCode = call.Resource.Source.CountryCode;
-
-                    // The type of endpoint being used.
                     endpointType = call.Resource.Source.EndpointType;
                 }
 
@@ -319,10 +305,12 @@ namespace EchoBot.Bot
                     ? this.CreateLocalMediaSession(callId)
                     : this.CreateLocalMediaSession();
 
-                // Answer call
-                call?.AnswerAsync(mediaSession).ForgetAndLogExceptionAsync(
-                    call.GraphLogger,
-                    $"Answering call {call.Id} with scenario {call.ScenarioId}.");
+                if (call.GraphLogger != null)
+                {
+                    call.AnswerAsync(mediaSession).ForgetAndLogExceptionAsync(
+                        call.GraphLogger,
+                        $"Answering call {call.Id} with scenario {call.ScenarioId}.");
+                }
             });
         }
 
