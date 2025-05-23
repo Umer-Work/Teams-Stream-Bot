@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace EchoBot
+namespace TeamsBot
 {
     public class AppSettings
     {

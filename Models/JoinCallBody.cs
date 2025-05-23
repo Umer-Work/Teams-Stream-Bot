@@ -1,5 +1,5 @@
 ﻿// ***********************************************************************
-// Assembly         : EchoBot.Models
+// Assembly         : TeamsBot.Models
 // Author           : JasonTheDeveloper
 // Created          : 09-07-2020
 //
@@ -11,7 +11,7 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
-namespace EchoBot.Models
+namespace TeamsBot.Models
 {
     /// <summary>
     /// The join call body.

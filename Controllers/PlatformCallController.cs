@@ -1,5 +1,5 @@
 ﻿// ***********************************************************************
-// Assembly         : EchoBot.Controllers
+// Assembly         : TeamsBot.Controllers
 // Author           : JasonTheDeveloper
 // Created          : 09-07-2020
 //
@@ -11,14 +11,14 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************>
-using EchoBot.Bot;
-using EchoBot.Constants;
-using EchoBot.Util;
+using TeamsBot.Bot;
+using TeamsBot.Constants;
+using TeamsBot.Util;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.Graph.Communications.Client;
 
-namespace EchoBot.Controllers
+namespace TeamsBot.Controllers
 {
     /// <summary>
     /// Entry point for handling call-related web hook requests from Skype Platform.

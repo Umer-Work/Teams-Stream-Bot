@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "EchoBot": {
+    "TeamsBot": {
       "commandName": "Project",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"

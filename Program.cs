@@ -1,11 +1,11 @@
-using EchoBot;
+using TeamsBot;
 using Microsoft.Extensions.Logging.Configuration;
 using Microsoft.Extensions.Logging.EventLog;
 
 IHost host = Host.CreateDefaultBuilder(args)
     .UseWindowsService(options =>
     {
-        options.ServiceName = "Echo Bot Service";
+        options.ServiceName = "Teams Bot Service";
     })
     .ConfigureServices(services =>
     {
@@ -14,7 +14,7 @@ IHost host = Host.CreateDefaultBuilder(args)
 
         services.AddSingleton<IBotHost, BotHost>();
 
-        services.AddHostedService<EchoBotWorker>();
+        services.AddHostedService<TeamsBotWorker>();
     })
     .Build();
 

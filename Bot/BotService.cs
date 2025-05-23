@@ -1,5 +1,5 @@
 ﻿// ***********************************************************************
-// Assembly         : EchoBot.Bot
+// Assembly         : TeamsBot.Bot
 // Author           : JasonTheDeveloper
 // Created          : 09-07-2020
 //
@@ -11,9 +11,9 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
-using EchoBot.Authentication;
-using EchoBot.Constants;
-using EchoBot.Models;
+using TeamsBot.Authentication;
+using TeamsBot.Constants;
+using TeamsBot.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.Graph;
 using Microsoft.Graph.Communications.Calls;
@@ -25,19 +25,19 @@ using Microsoft.Graph.Communications.Resources;
 using Microsoft.Skype.Bots.Media;
 using System.Collections.Concurrent;
 using System.Net;
-using EchoBot.Util;
+using TeamsBot.Util;
 using Microsoft.Graph.Models;
 using Microsoft.Graph.Contracts;
 
-namespace EchoBot.Bot
+namespace TeamsBot.Bot
 {
     /// <summary>
     /// Class BotService.
     /// Implements the <see cref="System.IDisposable" />
-    /// Implements the <see cref="EchoBot.Bot.IBotService" />
+    /// Implements the <see cref="TeamsBot.Bot.IBotService" />
     /// </summary>
     /// <seealso cref="System.IDisposable" />
-    /// <seealso cref="EchoBot.Bot.IBotService" />
+    /// <seealso cref="TeamsBot.Bot.IBotService" />
     public class BotService : IDisposable, IBotService
     {
         /// <summary>

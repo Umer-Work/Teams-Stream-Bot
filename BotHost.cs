@@ -1,5 +1,5 @@
 ﻿// ***********************************************************************
-// Assembly         : EchoBot
+// Assembly         : TeamsBot
 // Author           : bcage29
 // Created          : 10-27-2023
 //
@@ -12,13 +12,13 @@
 // <summary></summary>
 // ***********************************************************************
 using DotNetEnv.Configuration;
-using EchoBot.Bot;
-using EchoBot.Util;
+using TeamsBot.Bot;
+using TeamsBot.Util;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Graph.Communications.Common.Telemetry;
 
-namespace EchoBot
+namespace TeamsBot
 {
     /// <summary>
     /// Bot Web Application
@@ -43,7 +43,7 @@ namespace EchoBot
         /// <returns></returns>
         public async Task StartAsync()
         {
-            _logger.LogInformation("Starting the Echo Bot");
+            _logger.LogInformation("Starting the Teams Bot");
             // Set up the bot web application
             var builder = WebApplication.CreateBuilder();
 
@@ -72,12 +72,12 @@ namespace EchoBot
                 .ValidateDataAnnotations()
                 .ValidateOnStart();
 
-            builder.Services.AddSingleton<IGraphLogger, GraphLogger>(_ => new GraphLogger("EchoBotWorker", redirectToTrace: true));
+            builder.Services.AddSingleton<IGraphLogger, GraphLogger>(_ => new GraphLogger("TeamsBotWorker", redirectToTrace: true));
             builder.Services.AddSingleton<IBotMediaLogger, BotMediaLogger>();
             builder.Logging.AddApplicationInsights();
             builder.Logging.SetMinimumLevel(LogLevel.Information);
 
-            builder.Logging.AddEventLog(config => config.SourceName = "Echo Bot Service");
+            builder.Logging.AddEventLog(config => config.SourceName = "Teams Bot Service");
 
             builder.Services.AddSingleton<IBotService, BotService>();
 

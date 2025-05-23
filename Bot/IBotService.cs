@@ -1,5 +1,5 @@
 ﻿// ***********************************************************************
-// Assembly         : EchoBot.Bot
+// Assembly         : TeamsBot.Bot
 // Author           : JasonTheDeveloper
 // Created          : 09-07-2020
 //
@@ -11,12 +11,12 @@
 // </copyrigh>t
 // <summary></summary>
 // ***********************************************************************
-using EchoBot.Models;
+using TeamsBot.Models;
 using Microsoft.Graph.Communications.Calls;
 using Microsoft.Graph.Communications.Client;
 using System.Collections.Concurrent;
 
-namespace EchoBot.Bot
+namespace TeamsBot.Bot
 {
     /// <summary>
     /// Interface IBotService

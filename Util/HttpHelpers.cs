@@ -1,5 +1,5 @@
 ﻿// ***********************************************************************
-// Assembly         : EchoBot.Util
+// Assembly         : TeamsBot.Util
 // Author           : bcage29
 // Created          : 09-07-2020
 //
@@ -13,7 +13,7 @@
 // ***********************************************************************>
 using Microsoft.AspNetCore.Http;
 
-namespace EchoBot.Util
+namespace TeamsBot.Util
 {
     public static class HttpHelpers
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Skype.Bots.Media;
 
-namespace EchoBot.Bot
+namespace TeamsBot.Bot
 {
     public class MediaStreamEventArgs
     {

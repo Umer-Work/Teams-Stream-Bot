@@ -1,14 +1,14 @@
-using EchoBot.Bot;
+using TeamsBot.Bot;
 
-namespace EchoBot
+namespace TeamsBot
 {
-    public class EchoBotWorker : BackgroundService
+    public class TeamsBotWorker : BackgroundService
     {
         private readonly IHostApplicationLifetime _hostApplicationLifetime;
-        private readonly ILogger<EchoBotWorker> _logger;
+        private readonly ILogger<TeamsBotWorker> _logger;
         private readonly IBotHost _botHost;
 
-        public EchoBotWorker(IHostApplicationLifetime hostApplicationLifetime, ILogger<EchoBotWorker> logger, IBotHost botHost)
+        public TeamsBotWorker(IHostApplicationLifetime hostApplicationLifetime, ILogger<TeamsBotWorker> logger, IBotHost botHost)
         {
             _hostApplicationLifetime = hostApplicationLifetime;
             _logger = logger;
@@ -45,7 +45,7 @@ namespace EchoBot
             }
             finally 
             {
-                _logger.LogInformation("Stopping Echo Bot");
+                _logger.LogInformation("Stopping Teams Bot");
                 _hostApplicationLifetime.StopApplication();
             }
         }

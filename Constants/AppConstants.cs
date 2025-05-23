@@ -1,5 +1,5 @@
 ﻿// ***********************************************************************
-// Assembly         : EchoBot.Constants
+// Assembly         : TeamsBot.Constants
 // Author           : JasonTheDeveloper
 // Created          : 10-27-2023
 //
@@ -11,7 +11,7 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
-namespace EchoBot.Constants
+namespace TeamsBot.Constants
 {
     /// <summary>
     /// Class AzureConstants.

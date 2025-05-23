@@ -1,5 +1,5 @@
 ﻿// ***********************************************************************
-// Assembly         : EchoBot.Controllers
+// Assembly         : TeamsBot.Controllers
 // Author           : JasonTheDeveloper
 // Created          : 09-07-2020
 //
@@ -11,14 +11,14 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
-using EchoBot.Bot;
-using EchoBot.Constants;
-using EchoBot.Models;
+using TeamsBot.Bot;
+using TeamsBot.Constants;
+using TeamsBot.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System.Net;
 
-namespace EchoBot.Controllers
+namespace TeamsBot.Controllers
 {
     [ApiController]
     [Route("[controller]")]

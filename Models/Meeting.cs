@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace EchoBot.Models
+namespace TeamsBot.Models
 {
     /// <summary>
     /// Join URL context.

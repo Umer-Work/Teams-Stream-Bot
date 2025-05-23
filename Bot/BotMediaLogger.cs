@@ -1,6 +1,6 @@
 ﻿using MediaLogLevel = Microsoft.Skype.Bots.Media.LogLevel;
 
-namespace EchoBot.Bot
+namespace TeamsBot.Bot
 {
     /// <summary>
     /// The MediaPlatformLogger.

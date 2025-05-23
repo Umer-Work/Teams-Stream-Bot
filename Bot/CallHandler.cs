@@ -1,4 +1,4 @@
-﻿using EchoBot.Util;
+﻿using TeamsBot.Util;
 using Microsoft.Graph;
 using Microsoft.Graph.Communications.Calls;
 using Microsoft.Graph.Communications.Calls.Media;
@@ -7,7 +7,7 @@ using Microsoft.Graph.Communications.Resources;
 using Microsoft.Graph.Models;
 using System.Timers;
 
-namespace EchoBot.Bot
+namespace TeamsBot.Bot
 {
     /// <summary>
     /// Call Handler Logic.

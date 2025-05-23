@@ -4,7 +4,7 @@ using Microsoft.Skype.Bots.Media;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 
-namespace EchoBot.Util
+namespace TeamsBot.Util
 {
     /// <summary>
     /// The utility class.

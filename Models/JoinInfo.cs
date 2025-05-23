@@ -1,5 +1,5 @@
 ﻿// ***********************************************************************
-// Assembly         : EchoBot.Models
+// Assembly         : TeamsBot.Models
 // Author           : JasonTheDeveloper
 // Created          : 09-07-2020
 //
@@ -19,7 +19,7 @@ using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace EchoBot.Models
+namespace TeamsBot.Models
 {
     /// <summary>
     /// Gets the join information.

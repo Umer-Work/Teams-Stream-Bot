@@ -6,7 +6,7 @@
 // THIS CODE HAS NOT BEEN TESTED RIGOROUSLY.USING THIS CODE IN PRODUCTION ENVIRONMENT IS STRICTLY NOT RECOMMENDED.
 // THIS SAMPLE IS PURELY FOR DEMONSTRATION PURPOSES ONLY.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND.
-namespace EchoBot.Authentication
+namespace TeamsBot.Authentication
 {
     using System;
     using System.IdentityModel.Tokens.Jwt;
@@ -15,7 +15,7 @@ namespace EchoBot.Authentication
     using System.Security.Claims;
     using System.Threading;
     using System.Threading.Tasks;
-    using EchoBot.Constants;
+    using TeamsBot.Constants;
     using Microsoft.Graph.Communications.Client.Authentication;
     using Microsoft.Graph.Communications.Common;
     using Microsoft.Graph.Communications.Common.Telemetry;

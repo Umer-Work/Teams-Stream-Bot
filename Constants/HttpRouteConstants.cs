@@ -1,5 +1,5 @@
 ﻿// ***********************************************************************
-// Assembly         : EchoBot.Constants
+// Assembly         : TeamsBot.Constants
 // Author           : JasonTheDeveloper
 // Created          : 09-07-2020
 //
@@ -11,7 +11,7 @@
 // </copyright>
 // <summary>HTTP route constants for routing requests to CallController methods.</summary>
 // ***********************************************************************-
-namespace EchoBot.Constants
+namespace TeamsBot.Constants
 {
     public static class HttpRouteConstants
     {

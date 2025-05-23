@@ -3,7 +3,7 @@ using Microsoft.Graph.Communications.Common.Telemetry;
 using System.Net;
 using System.Runtime.CompilerServices;
 
-namespace EchoBot.Util
+namespace TeamsBot.Util
 {
     /// <summary>
     /// Extension methods for Exception.

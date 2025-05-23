@@ -1,4 +1,4 @@
-﻿namespace EchoBot
+﻿namespace TeamsBot
 {
     public interface IBotHost
     {

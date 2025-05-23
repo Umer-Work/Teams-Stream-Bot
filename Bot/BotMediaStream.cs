@@ -1,5 +1,5 @@
 ﻿// ***********************************************************************
-// Assembly         : EchoBot.Services
+// Assembly         : TeamsBot.Services
 // Author           : JasonTheDeveloper
 // Created          : 09-07-2020
 //
@@ -12,8 +12,8 @@
 // </copyright>
 // <summary>The bot media stream.</summary>
 // ***********************************************************************-
-using EchoBot.Media;
-using EchoBot.Util;
+using TeamsBot.Media;
+using TeamsBot.Util;
 using Microsoft.Graph.Communications.Calls;
 using Microsoft.Graph.Communications.Calls.Media;
 using Microsoft.Graph.Communications.Common;
@@ -22,7 +22,7 @@ using Microsoft.Skype.Bots.Media;
 using Microsoft.Skype.Internal.Media.Services.Common;
 using System.Runtime.InteropServices;
 
-namespace EchoBot.Bot
+namespace TeamsBot.Bot
 {
     /// <summary>
     /// Class responsible for streaming audio and video.

@@ -1,5 +1,5 @@
 ﻿// ***********************************************************************
-// Assembly         : EchoBot.Services
+// Assembly         : TeamsBot.Services
 // Author           : JasonTheDeveloper
 // Created          : 09-07-2020
 //
@@ -11,13 +11,13 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************>
-using EchoBot.Util;
+using TeamsBot.Util;
 using Microsoft.Graph.Communications.Common;
 using Microsoft.Graph.Communications.Common.Telemetry;
 using System.Timers;
 using Timer = System.Timers.Timer;
 
-namespace EchoBot.Bot
+namespace TeamsBot.Bot
 {
     /// <summary>
     /// The base class for handling heartbeats.

@@ -1,5 +1,5 @@
 ﻿// ***********************************************************************
-// Assembly         : EchoBot.Controllers
+// Assembly         : TeamsBot.Controllers
 // Author           : bcage29
 // Created          : 10-27-2023
 //
@@ -14,7 +14,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
-namespace EchoBot.Controllers
+namespace TeamsBot.Controllers
 {
 
     [Route("[controller]")]

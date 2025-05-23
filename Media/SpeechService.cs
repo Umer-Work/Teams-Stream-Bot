@@ -3,7 +3,7 @@ using Microsoft.CognitiveServices.Speech.Audio;
 using Microsoft.Skype.Bots.Media;
 using System.Runtime.InteropServices;
 
-namespace EchoBot.Media
+namespace TeamsBot.Media
 {
     /// <summary>
     /// Class SpeechService.
