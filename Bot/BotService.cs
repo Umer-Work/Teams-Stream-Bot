@@ -323,20 +323,41 @@ namespace TeamsBot.Bot
         {
             foreach (var call in args.AddedResources)
             {
-                var callHandler = new CallHandler(call, _settings, _logger);
-                var threadId = call.Resource.ChatInfo.ThreadId;
-                this.CallHandlers[threadId] = callHandler;
+                if (call?.Resource?.ChatInfo?.ThreadId is string threadId && !string.IsNullOrEmpty(threadId))
+                {
+                    var callHandler = new CallHandler(call, _settings, _logger);
+                    this.CallHandlers[threadId] = callHandler;
+                }
+                else
+                {
+                    _logger.LogWarning("Call or ChatInfo.ThreadId is null or empty during CallsOnUpdated (AddedResources).");
+                }
             }
 
             foreach (var call in args.RemovedResources)
             {
-                var threadId = call.Resource.ChatInfo.ThreadId;
-                if (this.CallHandlers.TryRemove(threadId, out CallHandler? handler))
+                if (call?.Resource?.ChatInfo?.ThreadId is string threadId && !string.IsNullOrEmpty(threadId))
                 {
-                    Task.Run(async () => {
-                        await handler.BotMediaStream.ShutdownAsync();
-                        handler.Dispose();
-                    });
+                    if (this.CallHandlers.TryRemove(threadId, out CallHandler? handler))
+                    {
+                        // Fire and forget shutdown
+                        _ = Task.Run(async () =>
+                        {
+                            if (handler.BotMediaStream != null)
+                            {
+                                await handler.BotMediaStream.ShutdownAsync();
+                            }
+                            handler.Dispose();
+                        });
+                    }
+                    else
+                    {
+                        _logger.LogWarning($"CallHandler not found to remove for threadId: {threadId}");
+                    }
+                }
+                else
+                {
+                    _logger.LogWarning("Call or ChatInfo.ThreadId is null or empty during CallsOnUpdated (RemovedResources).");
                 }
             }
         }

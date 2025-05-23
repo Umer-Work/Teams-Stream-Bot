@@ -12,6 +12,10 @@
 // <summary></summary>
 // ***********************************************************************>
 using Microsoft.AspNetCore.Http;
+using System;
+using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace TeamsBot.Util
 {
@@ -30,7 +34,7 @@ namespace TeamsBot.Util
             {
                 Scheme = req.Scheme,
                 Host = req.Host.Host,
-                Port = req.Host.Port.Value,
+                Port = req.Host.Port ?? -1, // Use -1 to omit port if null (default port for scheme)
                 Path = req.PathBase.Add(req.Path),
                 Query = req.QueryString.ToString()
             }.Uri);
@@ -45,7 +49,7 @@ namespace TeamsBot.Util
             => msg.Set(m => m.Content = new StreamContent(req.Body));
 
         private static HttpRequestMessage SetContentType(this HttpRequestMessage msg, HttpRequest req)
-            => msg.Set(m => m.Content.Headers.Add("Content-Type", req.ContentType), applyIf: req.Headers.ContainsKey("Content-Type"));
+            => msg.Set(m => m.Content.Headers.ContentType = MediaTypeHeaderValue.Parse(req.ContentType), applyIf: !string.IsNullOrEmpty(req.ContentType));
 
         private static HttpRequestMessage Set(this HttpRequestMessage msg, Action<HttpRequestMessage> config, bool applyIf = true)
         {
@@ -58,3 +62,4 @@ namespace TeamsBot.Util
         }
     }
 }
+

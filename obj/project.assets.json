@@ -9581,9 +9581,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin\\Desktop\\EchoBot\\EchoBot.csproj",
-      "projectName": "EchoBot",
-      "projectPath": "C:\\Users\\Admin\\Desktop\\EchoBot\\EchoBot.csproj",
+      "projectUniqueName": "C:\\Users\\Admin\\Desktop\\EchoBot\\TeamsBot.csproj",
+      "projectName": "TeamsBot",
+      "projectPath": "C:\\Users\\Admin\\Desktop\\EchoBot\\TeamsBot.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Admin\\Desktop\\EchoBot\\obj\\",
       "projectStyle": "PackageReference",
